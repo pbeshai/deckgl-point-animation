@@ -1,0 +1,56 @@
+html, body {
+  padding: 20px;
+  margin: 0;
+  overflow: hidden;
+  background: rgb(238, 238, 241);
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#map, #container, #deckgl-overlay {
+  width: 1280px;
+  height: 720px;
+}
+
+#container {
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0 0 16px rgba(0,0,0, 0.25);
+  background: #333;
+}
+
+#deckgl-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.nav{
+  display: block;
+  text-align: center;
+  margin: 2em 0;
+}
+
+a {
+  color: #1d5efd;
+  display: inline-block;
+  margin-right: 1em;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:last-child {
+  margin-right: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 0 30px;
+  font-size: 18px;
+}
