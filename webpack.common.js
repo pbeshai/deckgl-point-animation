@@ -1,17 +1,13 @@
-// NOTE: To use this example standalone (e.g. outside of deck.gl repo)
-// delete the local development overrides at the bottom of this file
-
 const path = require('path');
 const resolve = path.resolve;
 const Dotenv = require('dotenv-webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
-const CONFIG = {
-  mode: 'development',
-  devtool: 'eval',
-
+module.exports = {
   entry: {
-    scatterplot: resolve('./demo_ScatterplotLayer.js'),
-    delayedpoint: resolve('./demo_DelayedPointLayer.js'),
+    scatterplot: resolve('./src/demo_ScatterplotLayer.js'),
+    delayedpoint: resolve('./src/demo_DelayedPointLayer.js'),
   },
 
   resolve: {
@@ -21,13 +17,16 @@ const CONFIG = {
     },
   },
 
+  output: {
+    filename: '[name].bundle.js',
+    path: path.join(__dirname, 'docs'),
+  },
+
   // Read from .env file to get mapbox token (.env.local overrides .env)
   plugins: [
+    new CleanWebpackPlugin(),
+    new CopyPlugin(['src/index.html', 'src/scatterplot.html', 'src/style.css']),
     new Dotenv({ path: path.join(__dirname, '.env.local') }),
     new Dotenv({ path: path.join(__dirname, '.env') }),
   ],
 };
-
-// This line enables bundling against src in this repo rather than installed module
-module.exports = env =>
-  env ? require('../../webpack.config.local')(CONFIG)(env) : CONFIG;
