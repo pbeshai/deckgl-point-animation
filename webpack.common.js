@@ -1,7 +1,6 @@
 const path = require('path');
 const resolve = path.resolve;
 const Dotenv = require('dotenv-webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -22,10 +21,9 @@ module.exports = {
     path: path.join(__dirname, 'docs'),
   },
 
-  // Read from .env file to get mapbox token (.env.local overrides .env)
   plugins: [
-    new CleanWebpackPlugin(),
     new CopyPlugin(['src/index.html', 'src/scatterplot.html', 'src/style.css']),
+    // Read from .env file to get mapbox token (.env.local overrides .env)
     new Dotenv({ path: path.join(__dirname, '.env.local') }),
     new Dotenv({ path: path.join(__dirname, '.env') }),
   ],
